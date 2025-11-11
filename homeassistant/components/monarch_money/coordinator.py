@@ -6,9 +6,9 @@ from datetime import datetime, timedelta
 
 from aiohttp import ClientResponseError
 from gql.transport.exceptions import TransportServerError
-from monarchmoney import LoginFailedException
-from typedmonarchmoney import TypedMonarchMoney
-from typedmonarchmoney.models import (
+from .monarchmoney import LoginFailedException
+from .typedmonarchmoney import TypedMonarchMoney
+from .typedmonarchmoney.models import (
     MonarchAccount,
     MonarchCashflowSummary,
     MonarchSubscription,
