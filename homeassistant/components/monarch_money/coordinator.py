@@ -62,7 +62,7 @@ class MonarchMoneyDataUpdateCoordinator(DataUpdateCoordinator[MonarchData]):
                 await self.client.get_subscription_details()
             )
         except (TransportServerError, LoginFailedException, ClientResponseError) as err:
-            raise ConfigEntryError("Authentication failed") from err
+            raise ConfigEntryError(f"Authentication failed with token {self.client.token}") from err
         self.subscription_id = sub_details.id
 
     async def _async_update_data(self) -> MonarchData:

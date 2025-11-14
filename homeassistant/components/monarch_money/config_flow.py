@@ -66,9 +66,9 @@ async def validate_login(
     monarch_client = TypedMonarchMoney()
     if CONF_MFA_CODE in data:
         mfa_code = data[CONF_MFA_CODE]
-        LOGGER.debug("Attempting to authenticate with MFA code")
+        LOGGER.warning("Attempting to authenticate with MFA code")
         try:
-            await monarch_client.multi_factor_authenticate(email, password, mfa_code)
+            await monarch_client.login(email, password, mfa_secret_key=mfa_code)
         except KeyError as err:
             # A bug in the backing lib that I don't control throws a KeyError if the MFA code is wrong
             LOGGER.debug("Bad MFA Code")
